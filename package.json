@@ -1,0 +1,33 @@
+{
+  "name": "boilerplate-ts",
+  "version": "1.0.0",
+  "description": "typescript starter",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc --declaration",
+    "prepublish": "npm run build",
+    "test": "npm run test-only",
+    "test-only": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "jest": "^22.4.3",
+    "ts-jest": "^22.4.4",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "author": "Yulong Ruan <ruanyu1@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruanyl/boilerplate-ts.git"
+  },
+  "homepage": "https://github.com/ruanyl/boilerplate-ts",
+  "bugs": "https://github.com/ruanyl/boilerplate-ts/issues"
+}
