@@ -1,3 +1,3 @@
-## TypeScript React Starter
+## TypeScript Starter
 
-write React Component with TypeScript and publish to NPM
+Write with TypeScript and publish to NPM
