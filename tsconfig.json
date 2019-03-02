@@ -8,7 +8,7 @@
     "preserveConstEnums": true,
     "sourceMap": true,
     "target": "es5",
-    "lib": ["ES2015", "ES5", "ScriptHost"],
+    "lib": ["es2017", "es2015", "es5", "scripthost"],
     "outDir": "lib",
     "noUnusedLocals": true,
     "noUnusedParameters": true
