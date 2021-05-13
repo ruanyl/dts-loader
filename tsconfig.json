@@ -1,14 +1,8 @@
 {
+  "extends": "@tsconfig/node14/tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true,
-    "target": "es5",
-    "lib": ["es2017", "es2015", "es5", "scripthost"],
+    "removeComments": true,
     "outDir": "lib",
     "noUnusedLocals": true,
     "noUnusedParameters": true

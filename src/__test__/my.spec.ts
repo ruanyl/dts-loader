@@ -1,7 +1,7 @@
-import {foo} from '../src'
+import { foo } from '../my'
 
-describe('FOO', () => {
+describe('Test', () => {
   it('should return true', () => {
     expect(foo()).toBe(true)
-  });
-});
+  })
+})
