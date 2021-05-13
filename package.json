@@ -15,6 +15,7 @@
     "@tsconfig/node14": "^1.0.0",
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
     "eslint": "^7.26.0",
     "eslint-config-react-typescript": "^1.0.5",
     "import-sort-cli": "^6.0.0",
