@@ -79,4 +79,4 @@ have a separate webpack config for the exposes:
 
 
 ### TODO
-- [] Create a webpack plugin to automate #3
+- [ ] Create a webpack plugin to automate #3
