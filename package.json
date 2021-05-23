@@ -5,7 +5,7 @@
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --declaration",
     "prepublish": "npm run build",
     "test": "npm run test-only",
     "test-only": "jest --coverage",
