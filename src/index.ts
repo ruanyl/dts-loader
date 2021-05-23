@@ -109,22 +109,28 @@ function emitFile(
           fs.ensureDirSync(path.dirname(o.name))
           fs.writeFileSync(o.name, o.text)
 
-          for (const [key, value] of Object.entries(loaderOptions.exposes)) {
-            if (key && value) {
-              const entryPath = path.resolve(cwd, value)
-              if (entryPath === fileName) {
-                const moduleFilename = `${key}.d.ts`
-                const modulePath = path.resolve(
-                  cwd,
-                  `${loaderOptions.typesOutputDir}/exposes/${loaderOptions.name}`
-                )
-                fs.writeFileSync(
-                  path.resolve(modulePath, moduleFilename),
-                  `export * from './${path.relative(
-                    path.relative(cwd, modulePath),
-                    o.name.replace('.d.ts', '')
-                  )}'`
-                )
+          if (
+            loaderOptions.exposes &&
+            !isEmpty(loaderOptions.exposes) &&
+            !isEmpty(loaderOptions.name)
+          ) {
+            for (const [key, value] of Object.entries(loaderOptions.exposes)) {
+              if (key && value) {
+                const entryPath = path.resolve(cwd, value)
+                if (entryPath === fileName) {
+                  const moduleFilename = `${key}.d.ts`
+                  const modulePath = path.resolve(
+                    cwd,
+                    `${loaderOptions.typesOutputDir}/exposes/${loaderOptions.name}`
+                  )
+                  fs.writeFileSync(
+                    path.resolve(modulePath, moduleFilename),
+                    `export * from './${path.relative(
+                      path.relative(cwd, modulePath),
+                      o.name.replace('.d.ts', '')
+                    )}'`
+                  )
+                }
               }
             }
           }
@@ -137,8 +143,8 @@ function emitFile(
 }
 
 interface LoaderOptions {
-  name: string
-  exposes: Record<string, string>
+  name?: string
+  exposes?: Record<string, string>
   typesOutputDir: string
 }
 
@@ -167,14 +173,6 @@ export default function loader(content: string) {
   // @ts-ignore
   const context = this
   const loaderOptions: Partial<LoaderOptions> = loaderUtils.getOptions(context)
-
-  if (!loaderOptions.name || typeof loaderOptions.name !== 'string') {
-    throw new Error('webpack dts loader options missing `name`')
-  }
-
-  if (!loaderOptions.exposes || isEmpty(loaderOptions.exposes)) {
-    throw new Error('webpack dts loader options missing `exposes`')
-  }
 
   return makeLoader(
     context,
