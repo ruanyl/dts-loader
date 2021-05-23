@@ -61,8 +61,21 @@ or you can add the custom `typeRoots` to `tsconfig.json` so that TypeScript know
 ```
 
 3. For better development experience, you can zip the folder `.wp_federation/exposes/app` and deploy it along with your application,
-and then host application can download from remote and unzip it to `typeRoots`. This would make sure the typings are always up-to-date
-when working across different teams.
+and then the host application can download from remote and unzip it to `typeRoots`. This would make sure the typings are always up-to-date
+when working across different teams/applications.
+
+
+Note: the above setup will emit type definitions for the whole application(all ts files that webpack traverse started from the entries).
+To avoid emit unnecessary files or missing files(for example, when exposed module is not reachable by the entry). It would be better to
+have a separate webpack config for the exposes:
+
+```
+{
+  entry: {
+    './Counter': './src/modules/Counter/Counter.component.tsx',
+  }
+}
+```
 
 
 ### TODO
