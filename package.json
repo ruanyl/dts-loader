@@ -1,6 +1,6 @@
 {
   "name": "dts-loader",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "webpack loader to collect .d.ts files and create entry file for webpack module federation exposes",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -49,8 +49,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ruanyl/boilerplate-ts.git"
+    "url": "https://github.com/ruanyl/dts-loader.git"
   },
-  "homepage": "https://github.com/ruanyl/boilerplate-ts",
-  "bugs": "https://github.com/ruanyl/boilerplate-ts/issues"
+  "homepage": "https://github.com/ruanyl/dts-loader",
+  "bugs": "https://github.com/ruanyl/dts-loader/issues"
 }
