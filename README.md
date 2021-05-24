@@ -2,10 +2,10 @@
 
 Webpack loader to collect `.d.ts` files, the difference between this loader
 and `ts-loader` is `dts-loader` only emits `.d.ts` files and it's designed
-specifically for the purpose of *sharing webpack module federation exposed types*
+specifically for the purpose of **sharing webpack module federation exposed types**
 
 Thus, `dts-loader` will not only emits `.d.ts` files, but also will emit the entry
-file for the exposed modules based on the configuration of module federation
+file for the exposed modules based on the configuration of webpack module federation
 plugin's `exposes` section.
 
 ### Example setup of type sharing for webpack module federation
@@ -68,7 +68,7 @@ Now you can drop `app` folder to `./types`
 For better development experience, `dts-loader` also generates a tarball for the types where you can find in `.wp_federation`, it's name is `[name]-dts.tgz`.
 With the above config, you will find `app-dts.tgz` in `.wp_federation`
 
-you can deploy it along with your application statics, and then the host application can download from remote and unzip it to `typeRoots`. This would make sure the typings are always up-to-date when working across different teams/applications.
+you can deploy it along with your application's assets, and then the host application can download from remote and unzip it to `typeRoots`. This would make sure the typings are always up-to-date when working across different teams/applications.
 
 ### 4. WebpackRemoteTypesPlugin
 You can use `WebpackRemoteTypesPlugin` to automate step #3, it will download the tarball from remote and unzip it to the specified folder.
