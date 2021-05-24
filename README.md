@@ -37,11 +37,11 @@ plugin's `exposes` section.
 }
 ```
 
-With the above configuration, type definitions are emitted to `.wp_federation/exposes/app/dts`
+With the above configuration, type definitions are emitted to `.wp_federation/app/dts`
 
-And the entry file for `./Counter` module is emitted to `.wp_federation/exposes/app/Counter.d.ts`
+And the entry file for `./Counter` module is emitted to `.wp_federation/app/Counter.d.ts`
 
-2. Then you can copy the entire folder: `.wp_federation/exposes/app` and drop it to, for example: `node_modules/@types`
+2. Then you can copy the entire folder: `.wp_federation/app` and drop it to, for example: `node_modules/@types`
 
 or you can add the custom `typeRoots` to `tsconfig.json` so that TypeScript knows where to resolve types for the module
 
@@ -50,17 +50,17 @@ or you can add the custom `typeRoots` to `tsconfig.json` so that TypeScript know
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "*": ["*", "./.wp_federation/exposes/*"] // Wherever you want to put
+      "*": ["*", "./.wp_federation/*"] // Wherever you want to put
     },
     "typeRoots": [
-      "./.wp_federation/remotes", // Wherever you want to put, just make sure it's the same as the one configured in `paths`
+      "./.wp_federation", // Wherever you want to put, just make sure it's the same as the one configured in `paths`
       "./node_modules/@types"
     ]
   },
 }
 ```
 
-3. For better development experience, you can zip the folder `.wp_federation/exposes/app` and deploy it along with your application,
+3. For better development experience, you can zip the folder `.wp_federation/app` and deploy it along with your application,
 and then the host application can download from remote and unzip it to `typeRoots`. This would make sure the typings are always up-to-date
 when working across different teams/applications.
 
