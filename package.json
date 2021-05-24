@@ -1,6 +1,6 @@
 {
   "name": "dts-loader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "webpack loader to collect .d.ts files and create entry file for webpack module federation exposes",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",

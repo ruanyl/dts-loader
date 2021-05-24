@@ -121,7 +121,7 @@ function emitFile(
                   const moduleFilename = `${key}.d.ts`
                   const modulePath = path.resolve(
                     cwd,
-                    `${loaderOptions.typesOutputDir}/exposes/${loaderOptions.name}`
+                    `${loaderOptions.typesOutputDir}/${loaderOptions.name}`
                   )
                   fs.writeFileSync(
                     path.resolve(modulePath, moduleFilename),
@@ -160,7 +160,7 @@ function makeLoader(
     emitDeclarationOnly: true,
     outDir: path.resolve(
       cwd,
-      `${loaderOptions.typesOutputDir}/exposes/${loaderOptions.name}/dts`
+      `${loaderOptions.typesOutputDir}/${loaderOptions.name}/dts`
     ),
   })
 
