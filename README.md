@@ -8,6 +8,11 @@ Thus, `dts-loader` will not only emits `.d.ts` files, but also will emit the ent
 file for the exposed modules based on the configuration of webpack module federation
 plugin's `exposes` section.
 
+## Install
+```
+yarn add dts-loader
+```
+
 ### Example setup of type sharing for webpack module federation
 
 ### 1. dts-loader config
