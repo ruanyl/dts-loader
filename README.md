@@ -76,7 +76,7 @@ With the above config, you will find `app-dts.tgz` in `.wp_federation`
 you can deploy it along with your application's assets, and then the host application can download from remote and unzip it to `typeRoots`. This would make sure the typings are always up-to-date when working across different teams/applications.
 
 ### 4. WebpackRemoteTypesPlugin
-You can use `WebpackRemoteTypesPlugin` to automate step #3, it will download the tarball from remote and unzip it to the specified folder.
+You can use [WebpackRemoteTypesPlugin](https://github.com/ruanyl/webpack-remote-types-plugin) to automate step #3, it will download the tarball from remote and unzip it to the specified folder.
 
 ```javascript
 new WebpackRemoteTypesPlugin({
