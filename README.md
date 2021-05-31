@@ -70,8 +70,7 @@ Now you can drop `app` folder to `./types`
 
 ### 3. Share the generated types
 
-For better development experience, `dts-loader` also generates a tarball for the types where you can find in `.wp_federation`, it's name is `[name]-dts.tgz`.
-With the above config, you will find `app-dts.tgz` in `.wp_federation`
+For better development experience, you can also create a tarball for the types where you can find in `.wp_federation`, for example, give it a name: `app-dts.tgz`.
 
 you can deploy it along with your application's assets, and then the host application can download from remote and unzip it to `typeRoots`. This would make sure the typings are always up-to-date when working across different teams/applications.
 
