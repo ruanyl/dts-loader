@@ -71,8 +71,11 @@ Now you can drop `app` folder to `./types`
 ### 3. Share the generated types
 
 For better development experience, you can also create a tarball for the types where you can find in `.wp_federation`, for example, give it a name: `app-dts.tgz`.
+```bash
+tar czvf ./.wp_federation/app-dts.tgz -C ./.wp_federation/ app
+```
 
-you can deploy it along with your application's assets, and then the host application can download from remote and unzip it to `typeRoots`. This would make sure the typings are always up-to-date when working across different teams/applications.
+You can deploy it with your application's assets, and then the host application can download from remote and unzip it to `typeRoots`. This would make sure the typings are always up-to-date when working across different teams/applications.
 
 ### 4. WebpackRemoteTypesPlugin
 You can use [WebpackRemoteTypesPlugin](https://github.com/ruanyl/webpack-remote-types-plugin) to automate step #3, it will download the tarball from remote and unzip it to the specified folder.
