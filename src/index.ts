@@ -128,7 +128,10 @@ function emitFile(
                     `export * from './${path.relative(
                       path.relative(cwd, modulePath),
                       o.name.replace('.d.ts', '')
-                    )}'`
+                    )}';\nexport { default } from './${path.relative(
+                      path.relative(cwd, modulePath),
+                      o.name.replace('.d.ts', '')
+                    )}';`
                   )
                 }
               }
