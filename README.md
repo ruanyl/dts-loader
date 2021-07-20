@@ -50,14 +50,14 @@ And the entry file for `./Counter` module is emitted to `.wp_federation/app/Coun
 
 Then you can copy the entire folder: `.wp_federation/app` and drop it to, for example: `node_modules/@types`
 
-or you can add the custom `typeRoots` to `tsconfig.json` so that TypeScript knows where to resolve types for the module
+or you can remap the imports so that TypeScript knows where to resolve types for the remote modules
 
 ```javascript
 {
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "*": ["*", ".wp_federation/*"] // Wherever you want to put
+      "*": ["*", "types/*"] // Wherever you want to put
     }
   },
 }
