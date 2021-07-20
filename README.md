@@ -57,12 +57,8 @@ or you can add the custom `typeRoots` to `tsconfig.json` so that TypeScript know
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "*": ["*", "./types/*"] // Wherever you want to put
-    },
-    "typeRoots": [
-      "./types", // Wherever you want to put, just make sure it's the same as the one configured in `paths`
-      "./node_modules/@types"
-    ]
+      "*": ["*", ".wp_federation/*"] // Wherever you want to put
+    }
   },
 }
 ```
