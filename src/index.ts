@@ -116,22 +116,23 @@ function emitFile(
           ) {
             for (const [key, value] of Object.entries(loaderOptions.exposes)) {
               if (key && value) {
-                const entryPath = path.resolve(cwd, value)
-                if (entryPath === fileName) {
+                const inputFilePath = path.resolve(cwd, value)
+                if (inputFilePath === fileName) {
                   const moduleFilename = `${key}.d.ts`
                   const modulePath = path.resolve(
                     cwd,
                     `${loaderOptions.typesOutputDir}/${loaderOptions.name}`
                   )
+                  const dtsEntryPath = path.resolve(modulePath, moduleFilename)
+                  const relativePathToOutput = path.relative(
+                    path.dirname(dtsEntryPath),
+                    o.name.replace('.d.ts', '')
+                  )
+
+                  fs.ensureFileSync(dtsEntryPath)
                   fs.writeFileSync(
-                    path.resolve(modulePath, moduleFilename),
-                    `export * from './${path.relative(
-                      path.relative(cwd, modulePath),
-                      o.name.replace('.d.ts', '')
-                    )}';\nexport { default } from './${path.relative(
-                      path.relative(cwd, modulePath),
-                      o.name.replace('.d.ts', '')
-                    )}';`
+                    dtsEntryPath,
+                    `export * from './${relativePathToOutput}';\nexport { default } from './${relativePathToOutput}';`
                   )
                 }
               }
