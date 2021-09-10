@@ -4,6 +4,7 @@ import { isEmpty } from 'ramda'
 import loaderUtils from 'loader-utils'
 import path from 'path'
 import ts from 'typescript'
+import tar from 'tar'
 
 const cwd = process.cwd()
 
@@ -146,10 +147,25 @@ function emitFile(
   }
 }
 
+function createTarball(directory: string, fileName: string) {
+  console.log('made to tar')
+  tar
+    .c(
+      {
+        gzip: true,
+        file: `${directory}/${fileName}-dts.tgz`,
+        C: path.resolve(cwd, `${directory}/${fileName}`),
+      },
+      ['.']
+    )
+    .then((data) => console.log('data: ', data))
+}
+
 interface LoaderOptions {
   name?: string
   exposes?: Record<string, string>
   typesOutputDir: string
+  tarball?: boolean
 }
 
 function makeLoader(
@@ -169,6 +185,9 @@ function makeLoader(
   })
 
   emitFile(context.resourcePath, languageService, loaderOptions)
+  if (loaderOptions.tarball && loaderOptions.name) {
+    createTarball(loaderOptions.typesOutputDir, loaderOptions.name)
+  }
 
   return content
 }
@@ -184,6 +203,7 @@ export default function loader(content: string) {
       name: loaderOptions.name,
       exposes: loaderOptions.exposes,
       typesOutputDir: loaderOptions.typesOutputDir || '.wp_federation',
+      tarball: loaderOptions.tarball ? true : false,
     },
     content
   )

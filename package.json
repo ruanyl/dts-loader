@@ -18,6 +18,7 @@
     "@types/jest": "^26.0.23",
     "@types/loader-utils": "^2.0.2",
     "@types/ramda": "^0.27.40",
+    "@types/tar": "^4.0.5",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "eslint": "^7.26.0",
@@ -35,9 +36,9 @@
   "dependencies": {
     "fs-extra": "^10.0.0",
     "loader-utils": "^2.0.0",
-    "ramda": "^0.27.1"
+    "ramda": "^0.27.1",
+    "tar": "^6.1.11"
   },
-  "peerDependencies": {},
   "prettier": {
     "trailingComma": "es5",
     "tabWidth": 2,
