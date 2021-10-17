@@ -27,7 +27,7 @@ jobs:
         node-version: "14"
         registry-url: 'https://registry.npmjs.org'
     - name: Install dependencies
-      run: yarn install
+      run: yarn bootstrap
     - name: Build
       run: yarn build
     - name: Config git user
@@ -35,10 +35,8 @@ jobs:
         git config --local user.email "ruanyu1@gmail.com"
         git config --local user.name "Yulong Ruan"
     - name: Tag release
-      run: yarn release
-    - name: Push to master
-      run: git push --follow-tags origin master
+      run: yarn release:prepare
     - name: Publish to NPM
-      run: npm publish --access public
+      run: yarn release:publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

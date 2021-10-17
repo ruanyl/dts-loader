@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "strict": true,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "*": ["*", "types/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}

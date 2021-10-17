@@ -1,58 +1,25 @@
 {
-  "name": "dts-loader",
+  "name": "module-federation-remote-types",
   "version": "0.1.2",
-  "description": "webpack loader to collect .d.ts files and create entry file for webpack module federation exposes",
-  "main": "./lib/index.js",
-  "types": "./lib/index.d.ts",
-  "scripts": {
-    "build": "tsc --declaration",
-    "prepublish": "npm run build",
-    "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} [skip ci]'",
-    "test": "npm run test-only",
-    "test-only": "jest --coverage",
-    "test:watch": "jest --watch"
-  },
-  "devDependencies": {
-    "@tsconfig/node14": "^1.0.0",
-    "@types/fs-extra": "^9.0.11",
-    "@types/jest": "^26.0.23",
-    "@types/loader-utils": "^2.0.2",
-    "@types/ramda": "^0.27.40",
-    "@typescript-eslint/eslint-plugin": "^4.23.0",
-    "@typescript-eslint/parser": "^4.23.0",
-    "eslint": "^7.26.0",
-    "eslint-config-react-typescript": "^1.0.5",
-    "import-sort-cli": "^6.0.0",
-    "import-sort-parser-typescript": "^6.0.0",
-    "import-sort-style-alias": "^1.2.0",
-    "jest": "^26.6.3",
-    "prettier": "^2.3.0",
-    "standard-version": "^9.3.1",
-    "ts-jest": "^26.5.6",
-    "typescript": "^4.2",
-    "webpack": "^5.37.1"
-  },
-  "dependencies": {
-    "fs-extra": "^10.0.0",
-    "loader-utils": "^2.0.0",
-    "ramda": "^0.27.1"
-  },
-  "peerDependencies": {},
-  "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": true
-  },
+  "description": "Examples showcasing Webpack 5's Module Federation with remote types",
   "author": "Yulong Ruan <ruanyu1@gmail.com>",
   "license": "MIT",
-  "keywords": [
-    "typescript"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ruanyl/dts-loader.git"
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "./examples/*",
+      "./packages/*"
+    ]
   },
-  "homepage": "https://github.com/ruanyl/dts-loader",
-  "bugs": "https://github.com/ruanyl/dts-loader/issues"
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap --ignore-scripts",
+    "build": "lerna run --no-private --parallel build",
+    "release:prepare": "lerna version --no-private -m \"chore(release): %s [skip ci]\" --yes --conventional-commits",
+    "release:publish": "lerna publish --no-private from-git --yes",
+    "example:remote": "lerna run --scope @example/app2 start",
+    "example:host": "lerna run --scope @example/app1 start"
+  }
 }

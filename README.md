@@ -9,11 +9,23 @@ file for the exposed modules based on the configuration of webpack module federa
 plugin's `exposes` section.
 
 ## Install
-```
+```bash
 yarn add dts-loader
 ```
 
-### Example setup of type sharing for webpack module federation
+## Run Examples
+
+Run examples:
+```bash
+yarn bootstrap
+yarn example:remote
+yarn example:host
+```
+
+- [localhost:3001(host)](http://localhost:3001/)
+- [localhost:3002(remote)](http://localhost:3002/)
+
+## Setup
 
 ### 1. dts-loader config
 
@@ -79,7 +91,7 @@ You can use [WebpackRemoteTypesPlugin](https://github.com/ruanyl/webpack-remote-
 ```javascript
 new WebpackRemoteTypesPlugin({
   remotes: {
-    app: 'app@http://localhost:9000/remoteEntry.js',
+    app: 'app@http://localhost:9000/',
   },
   outputDir: 'types',
   remoteFileName: '[name]-dts.tgz' // default filename is [name]-dts.tgz where [name] is the remote name, for example, `app` with the above setup
@@ -93,7 +105,7 @@ Note: the above setup will emit type definitions for the whole application(all t
 To avoid emit unnecessary files or missing files(for example, when exposed module is not reachable by the entry). It would be better to
 have a separate webpack config for the exposes:
 
-```
+```javascript
 {
   entry: {
     './Counter': './src/modules/Counter/Counter.component.tsx',
