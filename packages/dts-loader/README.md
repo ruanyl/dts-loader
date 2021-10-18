@@ -13,6 +13,18 @@ plugin's `exposes` section.
 yarn add dts-loader
 ```
 
+## Run Examples
+
+Run examples:
+```bash
+yarn bootstrap
+yarn example:remote
+yarn example:host
+```
+
+- [localhost:3001(host)](http://localhost:3001/)
+- [localhost:3002(remote)](http://localhost:3002/)
+
 ## Setup
 
 ### 1. dts-loader config

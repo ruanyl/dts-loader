@@ -19,7 +19,7 @@
     "build": "lerna run --no-private --parallel build",
     "release:prepare": "lerna version --no-private -m \"chore(release): %s [skip ci]\" --yes --conventional-commits",
     "release:publish": "lerna publish --no-private from-git --yes",
-    "example:remote": "lerna run --scope @example/app2 start",
-    "example:host": "lerna run --scope @example/app1 start"
+    "example:remote": "lerna run --scope @example/app2 serve",
+    "example:host": "lerna run --scope @example/app1 serve"
   }
 }

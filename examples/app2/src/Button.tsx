@@ -1,11 +1,13 @@
 import * as React from "react";
 
+import styles from "./Button.css";
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   customLabel: string;
 }
 
-const Button = ({ customLabel, ...rest }: ButtonProps) => (
-  <button {...rest}>{customLabel}</button>
+export const Button = ({ customLabel, ...rest }: ButtonProps) => (
+  <button {...rest} className={styles.primary}>
+    {customLabel}
+  </button>
 );
-
-export default Button;

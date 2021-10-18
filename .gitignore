@@ -3,3 +3,4 @@ lib
 coverage
 dist
 .wp_federation
+.DS_Store

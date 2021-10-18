@@ -10,20 +10,23 @@
     "@types/react-dom": "17.0.9",
     "babel-loader": "8.2.2",
     "bundle-loader": "0.5.6",
+    "css-loader": "^6.4.0",
+    "dts-loader": "0.1.2",
     "html-webpack-plugin": "5.4.0",
+    "mini-css-extract-plugin": "^2.4.2",
+    "postcss-loader": "^6.2.0",
     "serve": "12.0.1",
+    "style-loader": "^3.3.0",
     "typescript": "4.3.5",
     "webpack": "5.58.0",
     "webpack-cli": "4.9.0",
     "webpack-dev-server": "4.3.1",
-    "dts-loader": "0.1.2",
     "webpack-remote-types-plugin": "0.2.7"
   },
   "scripts": {
-    "watch": "webpack-cli serve",
-    "start": "yarn build && yarn serve",
+    "start": "webpack-cli serve",
     "build": "webpack --mode production",
-    "serve": "serve dist -p 3001",
+    "serve": "yarn build && serve dist -p 3001",
     "clean": "rm -rf dist"
   },
   "dependencies": {
