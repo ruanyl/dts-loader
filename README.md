@@ -90,8 +90,7 @@ The plugin will download tarball from `http://localhost:9000/app-dts.tgz` and un
 
 ### More advanced setup
 Note: the above setup will emit type definitions for the whole application(all ts files that webpack traverse started from the entries).
-To avoid emit unnecessary files or missing files(for example, when exposed module is not reachable by the entry). It would be better to
-have a separate webpack config for the exposes:
+To avoid emit unnecessary files, it would be better to have a separate webpack config for the exposes:
 
 ```javascript
 {

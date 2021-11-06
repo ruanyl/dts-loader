@@ -31,7 +31,6 @@ const getCssLoaders = (env, type) => {
 };
 
 module.exports = (env, options) => {
-  console.log("options: ", options);
   return [
     {
       name: "app",
@@ -127,7 +126,7 @@ module.exports = (env, options) => {
                 options: {
                   name: "app2",
                   exposes: {
-                    "./Button": "./src/Button.tsx",
+                    "./Button": "./src/Button",
                   },
                 },
               },
