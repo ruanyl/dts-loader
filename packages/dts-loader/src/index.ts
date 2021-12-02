@@ -3,6 +3,7 @@ import fs from 'fs-extra'
 import { isEmpty } from 'ramda'
 import path from 'path'
 import ts from 'typescript'
+import crypto from "crypto";
 
 const cache: {
   program?: ts.Program
@@ -49,6 +50,7 @@ function getFileNames(cwd: string) {
   return []
 }
 
+const files: ts.MapLike<{ version: number, hashedContent: string }> = {}
 function getTSService(options: ts.CompilerOptions, cwd: string) {
   if (cache.languageService) {
     return cache.languageService
@@ -56,11 +58,9 @@ function getTSService(options: ts.CompilerOptions, cwd: string) {
 
   const rootFileNames = getFileNames(cwd)
 
-  const files: ts.MapLike<{ version: number }> = {}
-
   // initialize the list of files
   rootFileNames.forEach((fileName) => {
-    files[fileName] = { version: 0 }
+    files[fileName] = { version: 0, hashedContent: hash(fs.readFileSync(fileName).toString()) }
   })
 
   const servicesHost: ts.LanguageServiceHost = {
@@ -155,11 +155,27 @@ interface LoaderOptions {
   typesOutputDir: string
 }
 
+function hash(content: string) {
+  const hash = crypto.createHash("md5");
+  hash.update(content);
+  return hash.digest('hex');
+}
+
 function makeLoader(
   context: LoaderContext<Partial<LoaderOptions>>,
   loaderOptions: LoaderOptions,
   content: string
 ) {
+  const fileName = context.resourcePath;
+  const hashedContent = hash(content);
+  if (files[fileName] && files[fileName].hashedContent !== hashedContent) {
+      // Update the content
+      files[fileName].hashedContent = hashedContent;
+      
+      // Update the version to signal a change in the file
+      files[fileName].version++;
+  }
+  
   const tsconfig = getTSConfig(context.rootContext)
   const languageService = getTSService({
     ...tsconfig,
