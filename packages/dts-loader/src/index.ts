@@ -129,7 +129,7 @@ function emitFile(
                     const relativePathToOutput = path.relative(
                       path.dirname(dtsEntryPath),
                       o.name.replace('.d.ts', '')
-                    )
+                    ).replace(/\\/g, '/')
 
                     fs.ensureFileSync(dtsEntryPath)
                     fs.writeFileSync(
