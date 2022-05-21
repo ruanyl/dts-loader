@@ -93,6 +93,13 @@ function getTSService(options: ts.CompilerOptions, cwd: string) {
   return languageService
 }
 
+function normalizePath(fileName: string) {
+  if (path.sep !== path.posix.sep) {
+      return fileName.split(path.sep).join(path.posix.sep)
+  }
+  return fileName
+}
+
 function emitFile(
   context: LoaderContext<Partial<LoaderOptions>>,
   languageService: ts.LanguageService,
@@ -126,9 +133,11 @@ function emitFile(
                       `${loaderOptions.typesOutputDir}/${loaderOptions.name}`
                     )
                     const dtsEntryPath = path.resolve(modulePath, moduleFilename)
-                    const relativePathToOutput = path.relative(
-                      path.dirname(dtsEntryPath),
-                      o.name.replace('.d.ts', '')
+                    const relativePathToOutput = normalizePath(
+                      path.relative(
+                        path.dirname(dtsEntryPath),
+                        o.name.replace('.d.ts', '')
+                      )
                     )
 
                     fs.ensureFileSync(dtsEntryPath)
@@ -166,7 +175,7 @@ function makeLoader(
   loaderOptions: LoaderOptions,
   content: string
 ) {
-  const fileName = context.resourcePath;
+  const fileName = normalizePath(context.resourcePath)
   const hashedContent = hash(content);
   if (files[fileName] && files[fileName].hashedContent !== hashedContent) {
       // Update the content
