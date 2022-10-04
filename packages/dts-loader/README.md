@@ -43,7 +43,7 @@ yarn example:host
               name: 'app', // The name configured in ModuleFederationPlugin
               exposes: { // The exposes configured in ModuleFederationPlugin
                 './Counter': './src/modules/Counter/Counter.component.tsx',
-              }
+              },
               typesOutputDir: '.wp_federation' // Optional, default is '.wp_federation'
             },
           },
