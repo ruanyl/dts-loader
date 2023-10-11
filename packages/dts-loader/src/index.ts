@@ -11,15 +11,15 @@ const cache: {
   fileNameMapping: Record<string, string>
 } = { fileNameMapping: {} }
 
-function getTSConfigPath(cwd: string) {
-  const configPath = ts.findConfigFile(cwd, ts.sys.fileExists, 'tsconfig.json')
+function getTSConfigPath({ cwd, tsConfigFilename }: { cwd: string, tsConfigFilename: string }) {
+  const configPath = ts.findConfigFile(cwd, ts.sys.fileExists, tsConfigFilename)
   return configPath
 }
 
-function getTSConfig(cwd: string): ts.CompilerOptions {
-  const tsconfigPath = getTSConfigPath(cwd)
+function getTSConfig({ cwd, tsConfigFilename }: { cwd: string, tsConfigFilename: string }): ts.CompilerOptions {
+  const tsconfigPath = getTSConfigPath({ cwd, tsConfigFilename })
   if (!tsconfigPath) {
-    throw new Error("Could not find a valid 'tsconfig.json'.")
+    throw new Error(`Could not find a valid ${tsconfigPath}: '${tsConfigFilename}'.`)
   }
 
   const tsconfig = require(tsconfigPath)
@@ -162,6 +162,7 @@ interface LoaderOptions {
   name?: string
   exposes?: Record<string, string>
   typesOutputDir: string
+  tsConfigFilename: string
 }
 
 function hash(content: string) {
@@ -185,7 +186,7 @@ function makeLoader(
       files[fileName].version++;
   }
   
-  const tsconfig = getTSConfig(context.rootContext)
+  const tsconfig = getTSConfig({ cwd: context.rootContext, tsConfigFilename: loaderOptions.tsConfigFilename})
   const languageService = getTSService({
     ...tsconfig,
     declaration: true,
@@ -212,6 +213,7 @@ export default function loader(content: string) {
       name: loaderOptions.name,
       exposes: loaderOptions.exposes,
       typesOutputDir: loaderOptions.typesOutputDir || '.wp_federation',
+      tsConfigFilename: loaderOptions.tsConfigFilename || 'tsconfig.json',
     },
     content
   )
